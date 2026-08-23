@@ -9,12 +9,8 @@ import {
 } from "lucide-react";
 import authFetch from "../../lib/authFetch";
 
-function TemplateUploadPage() {
+function BadgeTemplateUploadPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [fontSize, setFontSize] = useState("");
-  const [fontColor, setFontColor] = useState("#161616");
-  const [nameXPos, setNameXPos] = useState("");
-  const [nameYPos, setNameYPos] = useState("");
   const [templateName, setTemplateName] = useState("");
   const [templateFor, setTemplateFor] = useState("");
   const [eventName, setEventName] = useState("");
@@ -31,10 +27,6 @@ function TemplateUploadPage() {
 
   const resetForm = () => {
     setFile(null);
-    setFontSize("");
-    setFontColor("#161616");
-    setNameXPos("");
-    setNameYPos("");
     setTemplateName("");
     setTemplateFor("");
     setEventName("");
@@ -47,18 +39,14 @@ function TemplateUploadPage() {
     setError("");
     setSuccess(false);
 
-    if (!file || !fontSize || !fontColor || !nameXPos || !nameYPos) {
-      setError("Please fill in all required fields.");
+    if (!file || !templateName) {
+      setError("Please fill in all required fields (File and Template Name).");
       return;
     }
 
     const formData = new FormData();
     formData.append("template", file);
-    formData.append("font_size", fontSize);
-    formData.append("font_color", fontColor);
-    formData.append("name_x_pos", nameXPos);
-    formData.append("name_y_pos", nameYPos);
-    if (templateName) formData.append("template_name", templateName);
+    formData.append("template_name", templateName);
     if (templateFor) formData.append("template_for", templateFor);
     if (eventName) formData.append("event_name", eventName);
     if (issuerName) formData.append("issuer_name", issuerName);
@@ -67,19 +55,19 @@ function TemplateUploadPage() {
     try {
       setSubmitting(true);
       const response = await authFetch(
-        `${import.meta.env.VITE_PUBLIC_BACKEND_API}/admin/add/template`,
+        `${import.meta.env.VITE_PUBLIC_BACKEND_API}/admin/add/badge-template`,
         { method: "POST", body: formData },
       );
 
       if (!response.ok) {
-        setError("Failed to upload template.");
+        setError("Failed to upload badge template.");
         return;
       }
 
       setSuccess(true);
       resetForm();
     } catch {
-      setError("Something went wrong while uploading the template.");
+      setError("Something went wrong while uploading the badge template.");
     } finally {
       setSubmitting(false);
     }
@@ -94,7 +82,7 @@ function TemplateUploadPage() {
             className="m-0 font-bold text-moz-black tracking-[-0.02em]"
             style={{ fontSize: "clamp(1.1rem, 3vw, 1.5rem)" }}
           >
-            New Certificate Template
+            New Badge Template
           </h1>
         </div>
         <Link id="back-to-home-link" to="/" className="btn-ghost">
@@ -106,7 +94,7 @@ function TemplateUploadPage() {
       {success && (
         <div className="max-w-3xl mx-auto w-full">
           <p className="form-banner form-banner-success">
-            <CheckCircle2 size={18} /> Template uploaded successfully.
+            <CheckCircle2 size={18} /> Badge template uploaded successfully.
           </p>
         </div>
       )}
@@ -127,11 +115,11 @@ function TemplateUploadPage() {
       >
         {/* File upload */}
         <div>
-          <label htmlFor="template-file-input" className="form-label">
+          <label htmlFor="badge-template-file-input" className="form-label">
             Template File{" "}
             <span className="text-moz-orange">*</span>
           </label>
-          <label htmlFor="template-file-input" className="dropzone">
+          <label htmlFor="badge-template-file-input" className="dropzone">
             {file ? (
               <FileText size={22} color="var(--color-moz-orange)" />
             ) : (
@@ -142,11 +130,11 @@ function TemplateUploadPage() {
                 {file ? file.name : "Click to choose a PDF or image"}
               </p>
               <p className="m-0 text-[0.7rem] text-moz-gray-mid">
-                PDF, PNG or JPG
+                PDF, PNG or JPG (Recommended: Square aspect ratio like 512x512)
               </p>
             </div>
             <input
-              id="template-file-input"
+              id="badge-template-file-input"
               type="file"
               accept="application/pdf,image/*"
               onChange={handleFileChange}
@@ -155,88 +143,26 @@ function TemplateUploadPage() {
           </label>
         </div>
 
-        {/* Required fields grid */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="font-size-input" className="form-label">
-              Font Size <span className="text-moz-orange">*</span>
-            </label>
-            <input
-              id="font-size-input"
-              type="number"
-              value={fontSize}
-              onChange={(e) => setFontSize(e.target.value)}
-              className="form-input"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="font-color-input" className="form-label">
-              Font Color <span className="text-moz-orange">*</span>
-            </label>
-            <div className="flex gap-2">
-              <input
-                id="font-color-picker"
-                type="color"
-                value={fontColor}
-                onChange={(e) => setFontColor(e.target.value)}
-                className="color-picker"
-              />
-              <input
-                id="font-color-input"
-                type="text"
-                value={fontColor}
-                onChange={(e) => setFontColor(e.target.value)}
-                className="form-input color-hex"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="name-x-pos-input" className="form-label">
-              Name X Position <span className="text-moz-orange">*</span>
-            </label>
-            <input
-              id="name-x-pos-input"
-              type="number"
-              value={nameXPos}
-              onChange={(e) => setNameXPos(e.target.value)}
-              className="form-input"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="name-y-pos-input" className="form-label">
-              Name Y Position <span className="text-moz-orange">*</span>
-            </label>
-            <input
-              id="name-y-pos-input"
-              type="number"
-              value={nameYPos}
-              onChange={(e) => setNameYPos(e.target.value)}
-              className="form-input"
-            />
-          </div>
+        {/* Required fields */}
+        <div>
+          <label htmlFor="template-name-input" className="form-label">
+            Template Name <span className="text-moz-orange">*</span>
+          </label>
+          <input
+            id="template-name-input"
+            type="text"
+            value={templateName}
+            onChange={(e) => setTemplateName(e.target.value)}
+            className="form-input"
+            placeholder="e.g. Winner Badge 2026"
+          />
         </div>
 
         {/* Optional metadata */}
         <div>
-          <p className="form-section-title">Optional Metadata</p>
+          <p className="form-section-title mt-2">Optional Metadata</p>
 
           <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label htmlFor="template-name-input" className="form-label">
-                Template Name
-              </label>
-              <input
-                id="template-name-input"
-                type="text"
-                value={templateName}
-                onChange={(e) => setTemplateName(e.target.value)}
-                className="form-input"
-              />
-            </div>
-
             <div>
               <label htmlFor="template-for-input" className="form-label">
                 Template For
@@ -263,7 +189,7 @@ function TemplateUploadPage() {
               />
             </div>
 
-            <div>
+            <div className="col-span-2">
               <label htmlFor="issuer-name-input" className="form-label">
                 Issuer Name
               </label>
@@ -314,7 +240,7 @@ function TemplateUploadPage() {
               <Loader2 size={16} className="animate-spin" /> Uploading…
             </>
           ) : (
-            "Upload Template"
+            "Upload Badge Template"
           )}
         </button>
       </form>
@@ -322,4 +248,4 @@ function TemplateUploadPage() {
   );
 }
 
-export default TemplateUploadPage;
+export default BadgeTemplateUploadPage;
