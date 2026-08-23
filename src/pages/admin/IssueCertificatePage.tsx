@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import authFetch from "../../lib/authFetch";
 
 interface Template {
   id: number;
@@ -68,7 +69,7 @@ export default function IssueCertificatePage() {
     const fetchTemplates = async () => {
       try {
         setTemplatesLoading(true);
-        const res = await fetch(
+        const res = await authFetch(
           `${import.meta.env.VITE_PUBLIC_BACKEND_API}/admin/templates`,
         );
         if (!res.ok) throw new Error("Could not load templates");
@@ -117,11 +118,10 @@ export default function IssueCertificatePage() {
         if (form[key].trim()) payload[key] = form[key].trim();
       });
 
-      const res = await fetch(
+      const res = await authFetch(
         `${import.meta.env.VITE_PUBLIC_BACKEND_API}/admin/add/certificate`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         },
       );
@@ -131,10 +131,9 @@ export default function IssueCertificatePage() {
         throw new Error(err.message ?? `Server error ${res.status}`);
       }
 
-      const result = await res.json();
+      const result = await res.json() as { certificate_id?: string; certificate?: { certificate_id?: string }; data?: { certificate_id?: string } };
       const certId =
-        result.certificate.certificate_id ?? result.data?.certificate_id ?? null;
-
+        result.certificate_id ?? result.certificate?.certificate_id ?? result.data?.certificate_id ?? null;
 
       if (!certId) throw new Error("No certificate ID returned by the server.");
 
