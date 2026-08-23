@@ -165,19 +165,16 @@ function PreviewPage() {
 
 /* ─── Scoped styles ─────────────────────────────────────────────────────── */
 
-
-
-
 const styles: Record<string, React.CSSProperties> = {
   section: {
     position: "relative",
     minHeight: "calc(100vh - 72px)",
-    background: "rgba(233, 145, 4, 0.19)", /* Cream tone from Homepage */
+    background: "rgba(233, 145, 4, 0.19)",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
     padding: "clamp(3rem, 6vw, 5rem) 1.5rem 4rem",
-    overflow: "hidden", /* Keeps absolute backgrounds contained */
+    overflow: "hidden",
   },
 
   brandWordShadow: {
