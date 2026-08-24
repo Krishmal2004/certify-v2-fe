@@ -40,7 +40,7 @@ function PDFViewer({ url }: Readonly<{ url: string }>) {
   const scale = Math.max(0.2, Math.min(scaleByWidth, scaleByHeight));
 
   return (
-    <div ref={containerRef} className="h-full w-full overflow-hidden">
+    <div ref={containerRef} className="h-full w-full overflow-hidden flex items-center justify-center">
       {!url ? (
         <p className="p-4 text-center text-sm text-slate-500">
           No preview available.
@@ -59,8 +59,11 @@ function PDFViewer({ url }: Readonly<{ url: string }>) {
               Unable to render PDF.
             </p>
           }
+          className="flex items-center justify-center"
         >
-          <div className="flex h-full w-full items-center justify-center">
+          <div
+            className="rounded-2xl overflow-hidden border border-moz-gray-light bg-white p-2 shadow-[0_4px_6px_rgba(0,0,0,0.04),0_12px_40px_rgba(89,42,203,0.06)]"
+          >
             <Page
               pageNumber={1}
               scale={scale}
