@@ -39,7 +39,7 @@ export default function Header() {
               <Link
                 to="/login"
                 id="header-login-btn"
-                className="rounded-none bg-moz-orange px-6 py-2 text-xs sm:text-sm font-semibold text-white transition hover:bg-moz-orange-dark active:scale-95 shrink-0"
+                className="rounded-md bg-moz-orange px-6 py-2 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:bg-moz-orange-dark hover:shadow-lg active:scale-95 shrink-0"
               >
                 Login
               </Link>

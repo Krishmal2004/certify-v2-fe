@@ -20,7 +20,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Certify Mozilla Campus CLub SLIIT",
+  title: "Certify Mozilla Campus Club SLIIT",
   description: "Get your certificates in one place.",
   icons: {
     icon: "/favicon.ico",
