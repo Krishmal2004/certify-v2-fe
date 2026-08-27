@@ -21,8 +21,8 @@ export default function HomePage() {
 
   return (
     <section className="flex flex-1 flex-col items-center justify-center bg-gradient-to-b from-moz-white to-white px-4 py-16 sm:py-24">
-      <h1 className="text-center font-poppins text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-        <span className="italic text-moz-orange">Your Achievements.</span>
+      <h1 className="text-center font-poppins text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        <span className="text-moz-orange">Your Achievements.</span>
         <br />
         <span className="text-moz-black">Officially Certified.</span>
       </h1>
@@ -39,7 +39,7 @@ export default function HomePage() {
           value={certificateId}
           onChange={(e) => setCertificateId(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full rounded-none border border-moz-gray-light bg-white px-5 py-3.5 text-sm text-moz-black placeholder-moz-gray-mid shadow-sm outline-none transition-all focus:border-moz-orange focus:ring-2 focus:ring-moz-orange/30 sm:text-base"
+          className="w-full rounded-md border border-moz-gray-light bg-white px-5 py-3.5 text-sm text-moz-black placeholder-gray-400 shadow-sm outline-none transition-all focus:border-moz-orange focus:ring-2 focus:ring-moz-orange/30 sm:text-base"
         />
       </div>
 
@@ -47,7 +47,7 @@ export default function HomePage() {
         id="verify-certificate-btn"
         type="button"
         onClick={handleVerify}
-        className="mt-5 cursor-pointer rounded-none bg-moz-orange px-10 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-moz-orange-dark hover:shadow-lg active:scale-95 sm:mt-6 sm:px-12 sm:py-4 sm:text-base"
+        className="mt-5 cursor-pointer rounded-md bg-moz-orange px-10 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-moz-orange-dark hover:shadow-lg active:scale-95 sm:mt-6 sm:px-12 sm:py-4 sm:text-base"
       >
         Verify Your Certificate
       </button>

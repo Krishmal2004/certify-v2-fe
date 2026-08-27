@@ -11,9 +11,7 @@ export default function PreviewPage() {
         Certificate Preview
       </h1>
 
-      {/* Certificate Mockup Container */}
       <div className="relative mb-10 flex w-full max-w-4xl flex-col items-center bg-white px-6 py-12 shadow-xl sm:px-16 sm:py-20 text-center border-x border-gray-50">
-        {/* Top/Bottom Gradient Borders */}
         <div className="absolute left-0 top-0 h-2 sm:h-3 w-full bg-gradient-to-r from-purple-600 via-pink-500 to-amber-500"></div>
         <div className="absolute bottom-0 left-0 h-2 sm:h-3 w-full bg-gradient-to-r from-purple-600 via-pink-500 to-amber-500"></div>
 
@@ -47,7 +45,7 @@ export default function PreviewPage() {
           {/* Signature 1 */}
           <div className="flex flex-col items-center">
             <div className="h-10 mb-2 flex items-end justify-center">
-              <span className="italic font-serif text-2xl opacity-80" style={{ fontFamily: "cursive" }}>Sadeesha</span>
+              <span className="italic font-serif text-2xl opacity-80 font-[cursive]">Sadeesha</span>
             </div>
             <div className="h-px w-24 sm:w-32 bg-moz-black mb-1.5"></div>
             <p className="text-[10px] sm:text-xs text-moz-black font-semibold">Sadeesha Perera</p>
@@ -63,7 +61,7 @@ export default function PreviewPage() {
           {/* Signature 2 */}
           <div className="flex flex-col items-center">
             <div className="h-10 mb-2 flex items-end justify-center">
-              <span className="italic font-serif text-2xl opacity-80" style={{ fontFamily: "cursive" }}>Asath</span>
+              <span className="italic font-serif text-2xl opacity-80 font-[cursive]">Asath</span>
             </div>
             <div className="h-px w-24 sm:w-32 bg-moz-black mb-1.5"></div>
             <p className="text-[10px] sm:text-xs text-moz-black font-semibold">Asath Mohomad</p>
