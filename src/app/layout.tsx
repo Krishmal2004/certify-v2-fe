@@ -20,8 +20,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Certify | SLIIT Mozilla Club",
+  title: "Certify Mozilla Campus CLub SLIIT",
   description: "Get your certificates in one place.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -43,14 +43,16 @@ export default function HomePage() {
         />
       </div>
 
-      <button
-        id="verify-certificate-btn"
-        type="button"
-        onClick={handleVerify}
-        className="mt-5 cursor-pointer rounded-md bg-moz-orange px-10 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-moz-orange-dark hover:shadow-lg active:scale-95 sm:mt-6 sm:px-12 sm:py-4 sm:text-base"
-      >
-        Verify Your Certificate
-      </button>
+      <div className="relative mt-5 inline-block sm:mt-6">
+        <button
+          id="verify-certificate-btn"
+          type="button"
+          onClick={handleVerify}
+          className="relative z-10 cursor-pointer rounded-md bg-moz-orange px-10 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-moz-orange-dark hover:shadow-lg active:scale-95 sm:px-12 sm:py-4 sm:text-base"
+        >
+          Verify Your Certificate
+        </button>
+      </div>
     </section>
   );
 }
