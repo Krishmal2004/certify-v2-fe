@@ -7,7 +7,6 @@ import {
   Loader2,
   Upload,
 } from "lucide-react";
-import authFetch from "../../lib/authFetch";
 
 function TemplateUploadPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -66,7 +65,7 @@ function TemplateUploadPage() {
 
     try {
       setSubmitting(true);
-      const response = await authFetch(
+      const response = await fetch(
         `${import.meta.env.VITE_PUBLIC_BACKEND_API}/admin/add/template`,
         { method: "POST", body: formData },
       );
@@ -296,16 +295,17 @@ function TemplateUploadPage() {
           id="submit-template-button"
           type="submit"
           disabled={submitting}
-          className={`submit-btn rounded-lg border-none text-[0.9rem] font-bold cursor-pointer font-sans tracking-[0.02em] flex items-center justify-center gap-2 py-[0.7rem] transition-[transform,opacity] duration-150 ${submitting
+          className={`submit-btn rounded-lg border-none text-[0.9rem] font-bold cursor-pointer font-sans tracking-[0.02em] flex items-center justify-center gap-2 py-[0.7rem] transition-[transform,opacity] duration-150 ${
+            submitting
               ? "bg-moz-gray-light text-moz-gray cursor-not-allowed"
               : "text-white"
-            }`}
+          }`}
           style={
             !submitting
               ? {
-                background:
-                  "linear-gradient(135deg, var(--color-moz-orange) 0%, var(--color-moz-orange-mid) 100%)",
-              }
+                  background:
+                    "linear-gradient(135deg, var(--color-moz-orange) 0%, var(--color-moz-orange-mid) 100%)",
+                }
               : undefined
           }
         >
