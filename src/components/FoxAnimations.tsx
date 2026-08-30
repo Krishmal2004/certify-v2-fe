@@ -13,11 +13,7 @@ import { useEffect, useState } from "react"
  * 8) Blank (3s delay)
  */
 const scenes = [
-  { type: "running-fox", direction: "rtl", duration: 6000 },
-  { type: "none", duration: 3000 },
   { type: "jumping-fox", position: "left", duration: 8000 },
-  { type: "none", duration: 3000 },
-  { type: "running-fox", direction: "ltr", duration: 6000 },
   { type: "none", duration: 3000 },
   { type: "jumping-fox", position: "right", duration: 8000 },
   { type: "none", duration: 3000 },
